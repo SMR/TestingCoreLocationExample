@@ -1,0 +1,6 @@
+framework module TestableUIKit {
+  umbrella header "TestableUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

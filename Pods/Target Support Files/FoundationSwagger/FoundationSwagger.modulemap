@@ -1,0 +1,6 @@
+framework module FoundationSwagger {
+  umbrella header "FoundationSwagger-umbrella.h"
+
+  export *
+  module * { export * }
+}

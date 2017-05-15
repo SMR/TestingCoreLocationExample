@@ -1,0 +1,6 @@
+framework module TestableCoreLocation {
+  umbrella header "TestableCoreLocation-umbrella.h"
+
+  export *
+  module * { export * }
+}
