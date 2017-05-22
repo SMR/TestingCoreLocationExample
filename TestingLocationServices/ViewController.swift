@@ -27,13 +27,26 @@ class ViewController: UIViewController {
                                           message: "We need your location to continue. Please change permission level in settings",
                                           preferredStyle: .alert)
             let settingsAction = UIAlertAction(title: "Go to Settings", style: .default) { _ in
-                                                print("Go to settings")
+                self.dismiss(animated: true)
+
+                guard let url = URL(string: UIApplicationOpenSettingsURLString) else {
+                    fatalError()
+                }
+
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:])
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alert.addAction(settingsAction)
-            alert.addAction(cancelAction)
             
-            present(alert, animated: true, completion: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                self.dismiss(animated: true)
+            }
+            alert.addAction(cancelAction)
+            alert.addAction(settingsAction)
+            
+            present(alert, animated: true)
         }
         
         guard CLLocationManager.locationServicesEnabled(),
